@@ -9,15 +9,15 @@ Our overarching goals are clarity, consistency and brevity, in that order.
 
 * [正确性](#正确性)
 * [命名](#命名)
-  * [Prose](#prose)
-  * [Delegates](#delegates)
-  * [Use Type Inferred Context](#use-type-inferred-context)
-  * [Generics](#generics)
-  * [Class Prefixes](#class-prefixes)
-  * [Language](#language)
-* [Code Organization](#code-organization)
+  * [正文](#正文)
+  * [委托](#委托)
+  * [使用编译器可推理的上下文](#使用编译器可推理的上下文)
+  * [泛型](#泛型)
+  * [类的前缀](#类的前缀)
+  * [语言](#语言)
+* [代码组织](#代码组织)
   * [Protocol Conformance](#protocol-conformance)
-  * [Unused Code](#unused-code)
+  * [未使用的代码](#未使用的代码)
   * [Minimal Imports](#minimal-imports)
 * [Spacing](#spacing)
 * [Comments](#comments)
@@ -89,9 +89,9 @@ Our overarching goals are clarity, consistency and brevity, in that order.
 - 给闭包和元组类型的参数添加标签
 - （可以的话）使用默认参数
 
-### Prose
+### 正文
 
-When referring to methods in prose, being unambiguous is critical. To refer to a method name, use the simplest form possible.
+当在正文中引用方法时，准确无误非常关键。引用方法名时，使用尽可能简单的形式。
 
 1. Write the method name with no parameters.  **Example:** Next, you need to call `addTarget`.
 2. Write the method name with argument labels.  **Example:** Next, you need to call `addTarget(_:action:)`.
@@ -104,7 +104,7 @@ For the above example using `UIGestureRecognizer`, 1 is unambiguous and preferre
 ![Methods in Xcode jump bar](screens/xcode-jump-bar.png)
 
 
-### Class Prefixes
+### 类的前缀
 
 Swift types are automatically namespaced by the module that contains them and you should not add a class prefix such as RW. If two names from different modules collide you can disambiguate by prefixing the type name with the module name. However, only specify the module name when there is possibility for confusion which should be rare.
 
@@ -114,27 +114,27 @@ import SomeModule
 let myClass = MyModule.UsefulClass()
 ```
 
-### Delegates
+### 委托
 
-When creating custom delegate methods, an unnamed first parameter should be the delegate source. (UIKit contains numerous examples of this.)
+当创建自定义的委托方法时，它的第一个参数应该是委托源，且该参数名字可在调用时省略。（UIKit库里面包含许多这样的例子）
 
-**Preferred**:
+**倾向于**:
 ```swift
 func namePickerView(_ namePickerView: NamePickerView, didSelectName name: String)
 func namePickerViewShouldReload(_ namePickerView: NamePickerView) -> Bool
 ```
 
-**Not Preferred**:
+**而不是**:
 ```swift
 func didSelectName(namePicker: NamePickerViewController, name: String)
 func namePickerShouldReload() -> Bool
 ```
 
-### Use Type Inferred Context
+### 使用编译器可推理的上下文
 
-Use compiler inferred context to write shorter, clear code.  (Also see [Type Inference](#type-inference).)
+使用编译器可推理的上下文来写简短、清晰的代码。（同时查阅 [类型推理](#类型推理).）
 
-**Preferred**:
+**倾向于**:
 ```swift
 let selector = #selector(viewDidLoad)
 view.backgroundColor = .red
@@ -142,7 +142,7 @@ let toView = context.view(forKey: .to)
 let view = UIView(frame: .zero)
 ```
 
-**Not Preferred**:
+**而不是**:
 ```swift
 let selector = #selector(ViewController.viewDidLoad)
 view.backgroundColor = UIColor.red
@@ -150,47 +150,47 @@ let toView = context.view(forKey: UITransitionContextViewKey.to)
 let view = UIView(frame: CGRect.zero)
 ```
 
-### Generics
+### 泛型
 
-Generic type parameters should be descriptive, upper camel case names. When a type name doesn't have a meaningful relationship or role, use a traditional single uppercase letter such as `T`, `U`, or `V`.
+泛型参数应该是描述性的、首字母大写的驼峰命名法名字。若没有一个有意义的关系或角色，使用传统式的单个大写字母，如：`T`, `U`, 或 `V`。
 
-**Preferred**:
+**倾向于**:
 ```swift
 struct Stack<Element> { ... }
 func write<Target: OutputStream>(to target: inout Target)
 func swap<T>(_ a: inout T, _ b: inout T)
 ```
 
-**Not Preferred**:
+**而不是**:
 ```swift
 struct Stack<T> { ... }
 func write<target: OutputStream>(to target: inout target)
 func swap<Thing>(_ a: inout Thing, _ b: inout Thing)
 ```
 
-### Language
+### 语言
 
-Use US English spelling to match Apple's API.
+使用美式英语拼写规则来匹配苹果公司的 API。
 
-**Preferred**:
+**倾向于**:
 ```swift
 let color = "red"
 ```
 
-**Not Preferred**:
+**而不是**:
 ```swift
 let colour = "red"
 ```
 
-## Code Organization
+## 代码组织
 
-Use extensions to organize your code into logical blocks of functionality. Each extension should be set off with a `// MARK: -` comment to keep things well-organized.
+用扩展把代码组织成具有逻辑性的功能模块。各个扩展之间应该以 `// MARK: -` 注释来隔开。
 
 ### Protocol Conformance
 
 In particular, when adding protocol conformance to a model, prefer adding a separate extension for the protocol methods. This keeps the related methods grouped together with the protocol and can simplify instructions to add a protocol to a class with its associated methods.
 
-**Preferred**:
+**倾向于**:
 ```swift
 class MyViewController: UIViewController {
   // class stuff here
@@ -207,7 +207,7 @@ extension MyViewController: UIScrollViewDelegate {
 }
 ```
 
-**Not Preferred**:
+**而不是**:
 ```swift
 class MyViewController: UIViewController, UITableViewDataSource, UIScrollViewDelegate {
   // all methods
@@ -218,20 +218,20 @@ Since the compiler does not allow you to re-declare protocol conformance in a de
 
 For UIKit view controllers, consider grouping lifecycle, custom accessors, and IBAction in separate class extensions.
 
-### Unused Code
+### 未使用的代码
 
 Unused (dead) code, including Xcode template code and placeholder comments should be removed. An exception is when your tutorial or book instructs the user to use the commented code.
 
 Aspirational methods not directly associated with the tutorial whose implementation simply calls the superclass should also be removed. This includes any empty/unused UIApplicationDelegate methods.
 
-**Preferred**:
+**倾向于**:
 ```swift
 override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
   return Database.contacts.count
 }
 ```
 
-**Not Preferred**:
+**而不是**:
 ```swift
 override func didReceiveMemoryWarning() {
   super.didReceiveMemoryWarning()
