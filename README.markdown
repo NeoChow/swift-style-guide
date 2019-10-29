@@ -1,9 +1,9 @@
 # raywenderlich.com 官方 Swift 风格指南
 ### 更新至 Swift 4.2
 
-This style guide is different from others you may see, because the focus is centered on readability for print and the web. We created this style guide to keep the code in our books, tutorials, and starter kits nice and consistent — even though we have many different authors working on the books.
+本风格指南和你见到的其他（同类作品）都不太一样，因为它聚焦于打印后和 web 上的可读性。创建本风格指南的目的，是让我们的书籍、教程、启动工具箱中的代码好读和保持一贯性，即便我们有着许多不同的作者在编写书籍。
 
-Our overarching goals are clarity, consistency and brevity, in that order.
+我们的总体目标是清晰度、一贯性、简洁度，这样的（优先级）顺序。
 
 ## 内容列表
 
