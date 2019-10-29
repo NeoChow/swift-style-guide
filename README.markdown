@@ -16,42 +16,42 @@ Our overarching goals are clarity, consistency and brevity, in that order.
   * [类的前缀](#类的前缀)
   * [语言](#语言)
 * [代码组织](#代码组织)
-  * [Protocol Conformance](#protocol-conformance)
+  * [协议的遵循](#协议的遵循)
   * [未使用的代码](#未使用的代码)
-  * [Minimal Imports](#minimal-imports)
-* [Spacing](#spacing)
-* [Comments](#comments)
-* [Classes and Structures](#classes-and-structures)
-  * [Use of Self](#use-of-self)
+  * [最小化Import](#最小化Import)
+* [空格](#空格)
+* [注释](#注释)
+* [类和结构体](#类和结构体)
+  * [Self的使用](#Self的使用)
   * [Protocol Conformance](#protocol-conformance)
-  * [Computed Properties](#computed-properties)
-  * [Final](#final)
-* [Function Declarations](#function-declarations)
-* [Function Calls](#function-calls)
-* [Closure Expressions](#closure-expressions)
-* [Types](#types)
-  * [Constants](#constants)
-  * [Static Methods and Variable Type Properties](#static-methods-and-variable-type-properties)
-  * [Optionals](#optionals)
-  * [Lazy Initialization](#lazy-initialization)
-  * [Type Inference](#type-inference)
-  * [Syntactic Sugar](#syntactic-sugar)
-* [Functions vs Methods](#functions-vs-methods)
-* [Memory Management](#memory-management)
-  * [Extending Lifetime](#extending-lifetime)
-* [Access Control](#access-control)
-* [Control Flow](#control-flow)
-  * [Ternary Operator](#ternary-operator)
-* [Golden Path](#golden-path)
+  * [计算型属性](#计算型属性)
+  * [关键字final](#关键字final)
+* [函数声明](#函数声明)
+* [函数调用](#函数调用)
+* [闭包表达式](#闭包表达式)
+* [类型](#类型)
+  * [常量](#常量)
+  * [静态方法和可变类型属性](#静态方法和可变类型属性)
+  * [可选型](#可选型)
+  * [懒初始化](#懒初始化)
+  * [类型推理](#类型推理)
+  * [语法糖](#语法糖)
+* [函数vs方法](#函数vs方法)
+* [内存管理](#内存管理)
+  * [扩展对象生命周期](#扩展对象生命周期)
+* [访问控制](#访问控制)
+* [控制流](#控制流)
+  * [三目运算符](#三目运算符)
+* [黄金路径](#黄金路径)
   * [Failing Guards](#failing-guards)
-* [Semicolons](#semicolons)
-* [Parentheses](#parentheses)
-* [Multi-line String Literals](#multi-line-string-literals)
-* [No Emoji](#no-emoji)
-* [Organization and Bundle Identifier](#organization-and-bundle-identifier)
-* [Copyright Statement](#copyright-statement)
-* [Smiley Face](#smiley-face)
-* [References](#references)
+* [分号](#分号)
+* [小括号](#小括号)
+* [多行字符串字面值](#多行字符串字面值)
+* [禁用表情符](#禁用表情符)
+* [组织和包标识符](#组织和包标识符)
+* [版权声明](#版权声明)
+* [笑脸](#笑脸)
+* [参考](#参考)
 
 
 ## 正确性
@@ -186,7 +186,7 @@ let colour = "red"
 
 用扩展把代码组织成具有逻辑性的功能模块。各个扩展之间应该以 `// MARK: -` 注释来隔开。
 
-### Protocol Conformance
+### 协议的遵循
 
 In particular, when adding protocol conformance to a model, prefer adding a separate extension for the protocol methods. This keeps the related methods grouped together with the protocol and can simplify instructions to add a protocol to a class with its associated methods.
 
@@ -249,9 +249,9 @@ override func tableView(_ tableView: UITableView, numberOfRowsInSection section:
 }
 
 ```
-### Minimal Imports
+### 最小化Import
 
-Import only the modules a source file requires. For example, don't import `UIKit` when importing `Foundation` will suffice. Likewise, don't import `Foundation` if you must import `UIKit`.
+只引入当前源文件需要的模块。例如，当 `Foundation` 满足时，不要引入 `UIKit`。同样地，必须引入 `UIKit` 时，别引入 `Foundation`。
 
 **Preferred**:
 ```
@@ -280,7 +280,7 @@ import UIKit
 var deviceModels: [String]
 ```
 
-## Spacing
+## 空格
 
 * Indent using 2 spaces rather than tabs to conserve space and help prevent line wrapping. Be sure to set this preference in Xcode and in the Project settings as shown below:
 
@@ -335,7 +335,7 @@ class TestDatabase : Database {
 
 * Add a single newline character at the end of each file.
 
-## Comments
+## 注释
 
 When they are needed, use comments to explain **why** a particular piece of code does something. Comments must be kept up-to-date or deleted.
 
@@ -343,9 +343,9 @@ Avoid block comments inline with code, as the code should be as self-documenting
 
 Avoid the use of C-style comments (`/* ... */`). Prefer the use of double- or triple-slash.
 
-## Classes and Structures
+## 类和结构体
 
-### Which one to use?
+### 该使用哪个？
 
 Remember, structs have [value semantics](https://developer.apple.com/library/mac/documentation/Swift/Conceptual/Swift_Programming_Language/ClassesAndStructures.html#//apple_ref/doc/uid/TP40014097-CH13-XID_144). Use structs for things that do not have an identity. An array that contains [a, b, c] is really the same as another array that contains [a, b, c] and they are completely interchangeable. It doesn't matter whether you use the first array or the second, because they represent the exact same thing. That's why arrays are structs.
 
@@ -353,7 +353,7 @@ Classes have [reference semantics](https://developer.apple.com/library/mac/docum
 
 Sometimes, things should be structs but need to conform to `AnyObject` or are historically modeled as classes already (`NSDate`, `NSSet`). Try to follow these guidelines as closely as possible.
 
-### Example definition
+### 定义案例
 
 Here's an example of a well-styled class definition:
 
@@ -404,14 +404,14 @@ The example above demonstrates the following style guidelines:
  + Organize extra functionality (e.g. printing) in extensions.
  + Hide non-shared, implementation details such as `centerString` inside the extension using `private` access control.
 
-### Use of Self
+### Self的使用
 
 For conciseness, avoid using `self` since Swift does not require it to access an object's properties or invoke its methods.
 
 Use self only when required by the compiler (in `@escaping` closures, or in initializers to disambiguate properties from arguments). In other words, if it compiles without `self` then omit it.
 
 
-### Computed Properties
+### 计算型属性
 
 For conciseness, if a computed property is read-only, omit the get clause. The get clause is required only when a set clause is provided.
 
@@ -431,7 +431,7 @@ var diameter: Double {
 }
 ```
 
-### Final
+### 关键字final
 
 Marking classes or members as `final` in tutorials can distract from the main topic and is not required. Nevertheless, use of `final` can sometimes clarify your intent and is worth the cost. In the below example, `Box` has a particular purpose and customization in a derived class is not intended. Marking it `final` makes that clear.
 
@@ -445,7 +445,7 @@ final class Box<T> {
 }
 ```
 
-## Function Declarations
+## 函数声明
 
 Keep short function declarations on one line including the opening brace:
 
@@ -489,7 +489,7 @@ func updateConstraints() -> () {
 typealias CompletionHandler = (result) -> ()
 ```
 
-## Function Calls
+## 函数调用
 
 Mirror the style of function declarations at call sites. Calls that fit on a single line should be written as such:
 
@@ -507,7 +507,7 @@ let success = reticulateSplines(
   comment: "normalize the display")
 ```
 
-## Closure Expressions
+## 闭包表达式
 
 Use trailing closure syntax only if there's a single closure expression parameter at the end of the argument list. Give the closure parameters descriptive names.
 
@@ -556,7 +556,7 @@ let value = numbers
   .map {$0 + 10}
 ```
 
-## Types
+## 类型
 
 Always use Swift's native types and expressions when available. Swift offers bridging to Objective-C so you can still use the full set of methods as needed.
 
@@ -580,7 +580,7 @@ let widthString: NSString = width.stringValue        // NSString
 
 In drawing code, use `CGFloat` if it makes the code more succinct by avoiding too many conversions.
 
-### Constants
+### 常量
 
 Constants are defined using the `let` keyword and variables with the `var` keyword. Always use `let` instead of `var` if the value of the variable will not change.
 
@@ -608,11 +608,11 @@ let root2 = 1.41421356237309504880168872
 let hypotenuse = side * root2 // what is root2?
 ```
 
-### Static Methods and Variable Type Properties
+### 静态方法和可变类型属性
 
-Static methods and type properties work similarly to global functions and global variables and should be used sparingly. They are useful when functionality is scoped to a particular type or when Objective-C interoperability is required.
+静态方法和类型属性工作方式类似于全局函数和全局变量，且应该谨慎地使用。当某个功能和一个特定类型相关联，或需要与 Objective-C 交互时，可能会用到它们。
 
-### Optionals
+### 可选型
 
 Declare variables and function return types as optional with `?` where a `nil` value is acceptable.
 
@@ -671,7 +671,7 @@ UIView.animate(withDuration: 2.0) { [weak self] in
 }
 ```
 
-### Lazy Initialization
+### 懒初始化
 
 Consider using lazy initialization for finer grained control over object lifetime. This is especially true for `UIViewController` that loads views lazily. You can either use a closure that is immediately called `{ }()` or call a private factory method. Example:
 
@@ -692,7 +692,7 @@ private func makeLocationManager() -> CLLocationManager {
   - Location manager has a side-effect for popping up UI to ask the user for permission so fine grain control makes sense here.
 
 
-### Type Inference
+### 类型推理
 
 Prefer compact code and let the compiler infer the type for constants or variables of single instances. Type inference is also appropriate for small, non-empty arrays and dictionaries. When required, specify the specific type such as `CGFloat` or `Int16`.
 
@@ -711,7 +711,7 @@ let currentBounds: CGRect = computeViewBounds()
 var names = [String]()
 ```
 
-#### Type Annotation for Empty Arrays and Dictionaries
+#### 空数组和字典的类型注解
 
 For empty arrays and dictionaries, use type annotation. (For an array or dictionary assigned to a large, multi-line literal, use type annotation.)
 
@@ -730,7 +730,7 @@ var lookup = [String: Int]()
 **NOTE**: Following this guideline means picking descriptive names is even more important than before.
 
 
-### Syntactic Sugar
+### 语法糖
 
 Prefer the shortcut versions of type declarations over the full generics syntax.
 
@@ -748,7 +748,7 @@ var employees: Dictionary<Int, String>
 var faxNumber: Optional<Int>
 ```
 
-## Functions vs Methods
+## 函数vs方法
 
 Free functions, which aren't attached to a class or type, should be used sparingly. When possible, prefer to use a method instead of a free function. This aids in readability and discoverability.
 
@@ -772,11 +772,11 @@ let tuples = zip(a, b)  // feels natural as a free function (symmetry)
 let value = max(x, y, z)  // another free function that feels natural
 ```
 
-## Memory Management
+## 内存管理
 
 Code (even non-production, tutorial demo code) should not create reference cycles. Analyze your object graph and prevent strong cycles with `weak` and `unowned` references. Alternatively, use value types (`struct`, `enum`) to prevent cycles altogether.
 
-### Extending object lifetime
+### 扩展对象生命周期
 
 Extend object lifetime using the `[weak self]` and `guard let self = self else { return }` idiom. `[weak self]` is preferred to `[unowned self]` where it is not immediately obvious that `self` outlives the closure. Explicitly extending lifetime is preferred to optional chaining.
 
@@ -809,7 +809,7 @@ resource.request().onComplete { [weak self] response in
 }
 ```
 
-## Access Control
+## 访问控制
 
 Full access control annotation in tutorials can distract from the main topic and is not required. Using `private` and `fileprivate` appropriately, however, adds clarity and promotes encapsulation. Prefer `private` to `fileprivate`; use `fileprivate` only when the compiler insists.
 
@@ -835,7 +835,7 @@ class TimeMachine {
 }
 ```
 
-## Control Flow
+## 控制流
 
 Prefer the `for-in` style of `for` loop over the `while-condition-increment` style.
 
@@ -875,7 +875,7 @@ while i < attendeeList.count {
 }
 ```
 
-### Ternary Operator
+### 三目运算符
 
 The Ternary operator, `?:` , should only be used when it increases clarity or code neatness. A single condition is usually all that should be evaluated. Evaluating multiple conditions is usually more understandable as an `if` statement or refactored into instance variables. In general, the best use of the ternary operator is during assignment of a variable and deciding which value to use.
 
@@ -895,7 +895,7 @@ result = isHorizontal ? x : y
 result = a > b ? x = c > d ? c : d : y
 ```
 
-## Golden Path
+## 黄金路径
 
 When coding with conditionals, the left-hand margin of the code should be the "golden" or "happy" path. That is, don't nest `if` statements. Multiple return statements are OK. The `guard` statement is built for this.
 
@@ -968,7 +968,7 @@ if let number1 = number1 {
 
 Guard statements are required to exit in some way. Generally, this should be simple one line statement such as `return`, `throw`, `break`, `continue`, and `fatalError()`. Large code blocks should be avoided. If cleanup code is required for multiple exit points, consider using a `defer` block to avoid cleanup code duplication.
 
-## Semicolons
+## 分号
 
 Swift does not require a semicolon after each statement in your code. They are only required if you wish to combine multiple statements on a single line.
 
@@ -986,7 +986,7 @@ let swift = "not a scripting language";
 
 **NOTE**: Swift is very different from JavaScript, where omitting semicolons is [generally considered unsafe](http://stackoverflow.com/questions/444080/do-you-recommend-using-semicolons-after-every-statement-in-javascript)
 
-## Parentheses
+## 小括号
 
 Parentheses around conditionals are not required and should be omitted.
 
@@ -1011,7 +1011,7 @@ In larger expressions, optional parentheses can sometimes make code read more cl
 let playerMark = (player == current ? "X" : "O")
 ```
 
-## Multi-line String Literals
+## 多行字符串字面值
 
 When building a long string literal, you're encouraged to use the multi-line string literal syntax. Open the literal on the same line as the assignment but do not include text on that line. Indent the text block one additional level.
 
@@ -1048,17 +1048,17 @@ let message = "You cannot charge the flux " +
   "have \(credits) credits available."
 ```
 
-## No Emoji
+## 禁用表情符
 
 Do not use emoji in your projects. For those readers who actually type in their code, it's an unnecessary source of friction. While it may be cute, it doesn't add to the learning and it interrupts the coding flow for these readers.
 
-## Organization and Bundle Identifier
+## 组织和包标识符
 
 Where an Xcode project is involved, the organization should be set to `Ray Wenderlich` and the Bundle Identifier set to `com.raywenderlich.TutorialName` where `TutorialName` is the name of the tutorial project.
 
 ![Xcode Project settings](screens/project_settings.png)
 
-## Copyright Statement
+## 版权声明
 
 The following copyright statement should be included at the top of every source
 file:
@@ -1093,7 +1093,7 @@ file:
 /// THE SOFTWARE.
 ```
 
-## Smiley Face
+## 笑脸
 
 Smiley faces are a very prominent style feature of the [raywenderlich.com](https://www.raywenderlich.com/) site! It is very important to have the correct smile signifying the immense amount of happiness and excitement for the coding topic. The closing square bracket `]` is used because it represents the largest smile able to be captured using ASCII art. A closing parenthesis `)` creates a half-hearted smile, and thus is not preferred.
 
@@ -1107,9 +1107,9 @@ Smiley faces are a very prominent style feature of the [raywenderlich.com](https
 :)
 ```
 
-## References
+## 参考
 
-* [The Swift API Design Guidelines](https://swift.org/documentation/api-design-guidelines/)
-* [The Swift Programming Language](https://developer.apple.com/library/prerelease/ios/documentation/swift/conceptual/swift_programming_language/index.html)
-* [Using Swift with Cocoa and Objective-C](https://developer.apple.com/library/prerelease/ios/documentation/Swift/Conceptual/BuildingCocoaApps/index.html)
-* [Swift Standard Library Reference](https://developer.apple.com/library/prerelease/ios/documentation/General/Reference/SwiftStandardLibraryReference/index.html)
+* [Swift API 设计指南](https://swift.org/documentation/api-design-guidelines/)
+* [Swift 编程语言](https://developer.apple.com/library/prerelease/ios/documentation/swift/conceptual/swift_programming_language/index.html)
+* [用 Cocoa 与 Objective-C 使用 Swift](https://developer.apple.com/library/prerelease/ios/documentation/Swift/Conceptual/BuildingCocoaApps/index.html)
+* [Swift 标准库参考](https://developer.apple.com/library/prerelease/ios/documentation/General/Reference/SwiftStandardLibraryReference/index.html)
