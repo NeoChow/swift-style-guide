@@ -23,7 +23,6 @@ Our overarching goals are clarity, consistency and brevity, in that order.
 * [注释](#注释)
 * [类和结构体](#类和结构体)
   * [Self的使用](#Self的使用)
-  * [Protocol Conformance](#protocol-conformance)
   * [计算型属性](#计算型属性)
   * [关键字final](#关键字final)
 * [函数声明](#函数声明)
