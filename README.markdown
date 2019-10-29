@@ -54,9 +54,9 @@ Our overarching goals are clarity, consistency and brevity, in that order.
 * [References](#references)
 
 
-## Correctness
+## 正确性
 
-Strive to make your code compile without warnings. This rule informs many style decisions such as using `#selector` types instead of string literals.
+尽量让代码以无警告编译通过。这条规则阐明了许多风格决定，例如，使用`#selector`类型，而不是字符串字面值。
 
 ## Naming
 
