@@ -5,10 +5,10 @@ This style guide is different from others you may see, because the focus is cent
 
 Our overarching goals are clarity, consistency and brevity, in that order.
 
-## Table of Contents
+## 内容列表
 
-* [Correctness](#correctness)
-* [Naming](#naming)
+* [正确性](#正确性)
+* [命名](#命名)
   * [Prose](#prose)
   * [Delegates](#delegates)
   * [Use Type Inferred Context](#use-type-inferred-context)
