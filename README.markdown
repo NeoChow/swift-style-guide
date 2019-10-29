@@ -58,36 +58,36 @@ Our overarching goals are clarity, consistency and brevity, in that order.
 
 尽量让代码以无警告编译通过。这条规则阐明了许多风格决定，例如，使用`#selector`类型，而不是字符串字面值。
 
-## Naming
+## 命名
 
-Descriptive and consistent naming makes software easier to read and understand. Use the Swift naming conventions described in the [API Design Guidelines](https://swift.org/documentation/api-design-guidelines/). Some key takeaways include:
+描述性和一贯性命名让软件更易读和理解。使用[API设计指南](https://swift.org/documentation/api-design-guidelines/)中描述的 Swift 命名惯例。一些关键摘要包括：
 
-- striving for clarity at the call site
-- prioritizing clarity over brevity
-- using camel case (not snake case)
-- using uppercase for types (and protocols), lowercase for everything else
-- including all needed words while omitting needless words
-- using names based on roles, not types
-- sometimes compensating for weak type information
-- striving for fluent usage
-- beginning factory methods with `make`
-- naming methods for their side effects
-  - verb methods follow the -ed, -ing rule for the non-mutating version
-  - noun methods follow the formX rule for the mutating version
-  - boolean types should read like assertions
-  - protocols that describe _what something is_ should read as nouns
-  - protocols that describe _a capability_ should end in _-able_ or _-ible_
-- using terms that don't surprise experts or confuse beginners
-- generally avoiding abbreviations
-- using precedent for names
-- preferring methods and properties to free functions
-- casing acronyms and initialisms uniformly up or down
-- giving the same base name to methods that share the same meaning
-- avoiding overloads on return type
-- choosing good parameter names that serve as documentation
-- preferring to name the first parameter instead of including its name in the method name, except as mentioned under Delegates
-- labeling closure and tuple parameters
-- taking advantage of default parameters
+- 努力保持使用处的清晰度
+- 清晰度比简洁度更优先
+- 使用驼峰表示法（而不是蛇行表示法）（译者注：使用 camelCase, 而不是 snake_case）
+- 类型（和协议）用大写，其他情况用小写 （译者注：这里说的是英文首字母）
+- 略去不必要单词的同时包括进所有需要的那些
+- 根据角色使用名字，而不是类型
+- 有时需要补全弱类型信息
+- 努力达到流畅使用
+- 工厂方法以`make`开头
+- 根据副作用给方法命名
+  - 动词型方法的不可修改版本遵循-ed、 -ing时态规则
+  - 名词型方法的可修改版本遵循 formX 规则
+  - Bool类型读起来应该像断言
+  - 描述 _是什么东西_ 的协议读起来应该像名词
+  - 描述 _某项能力_ 的协议应该以 _-able_ 或 _-ible_ 结尾
+- 用到的词语应该既不让专家感到惊奇，也不让初学者感到困惑
+- 一般情况下避免使用简称
+- 使用上文提到过的名字
+- 倾向于使用方法和属性，而不是全局函数
+- 首字母缩写词统一使用大写或小写
+- 具有相同含义的方法应该具有相同的基本名
+- 避免对返回类型进行重载
+- 选择可以作为文档的参数名
+- 除了委托那一节提到的，应该给方法的第一个参数命名，而不是把它写到方法名字里面
+- 给闭包和元组类型的参数添加标签
+- （可以的话）使用默认参数
 
 ### Prose
 
