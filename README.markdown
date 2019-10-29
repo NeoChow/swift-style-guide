@@ -252,20 +252,20 @@ override func tableView(_ tableView: UITableView, numberOfRowsInSection section:
 
 只引入当前源文件需要的模块。例如，当 `Foundation` 满足时，不要引入 `UIKit`。同样地，必须引入 `UIKit` 时，别引入 `Foundation`。
 
-**Preferred**:
+**倾向于**:
 ```
 import UIKit
 var view: UIView
 var deviceModels: [String]
 ```
 
-**Preferred**:
+**倾向于**:
 ```
 import Foundation
 var deviceModels: [String]
 ```
 
-**Not Preferred**:
+**而不是**:
 ```
 import UIKit
 import Foundation
@@ -273,7 +273,7 @@ var view: UIView
 var deviceModels: [String]
 ```
 
-**Not Preferred**:
+**而不是**:
 ```
 import UIKit
 var deviceModels: [String]
@@ -288,7 +288,7 @@ var deviceModels: [String]
 * Method braces and other braces (`if`/`else`/`switch`/`while` etc.) always open on the same line as the statement but close on a new line.
 * Tip: You can re-indent by selecting some code (or **Command-A** to select all) and then **Control-I** (or **Editor ▸ Structure ▸ Re-Indent** in the menu). Some of the Xcode template code will have 4-space tabs hard coded, so this is a good way to fix that.
 
-**Preferred**:
+**倾向于**:
 ```swift
 if user.isHappy {
   // Do something
@@ -297,7 +297,7 @@ if user.isHappy {
 }
 ```
 
-**Not Preferred**:
+**而不是**:
 ```swift
 if user.isHappy
 {
@@ -314,14 +314,14 @@ else {
 
 * Colons always have no space on the left and one space on the right. Exceptions are the ternary operator `? :`, empty dictionary `[:]` and `#selector` syntax `addTarget(_:action:)`.
 
-**Preferred**:
+**倾向于**:
 ```swift
 class TestDatabase: Database {
   var data: [String: CGFloat] = ["A": 1.2, "B": 3.2]
 }
 ```
 
-**Not Preferred**:
+**而不是**:
 ```swift
 class TestDatabase : Database {
   var data :[String:CGFloat] = ["A" : 1.2, "B":3.2]
@@ -414,14 +414,14 @@ Use self only when required by the compiler (in `@escaping` closures, or in init
 
 For conciseness, if a computed property is read-only, omit the get clause. The get clause is required only when a set clause is provided.
 
-**Preferred**:
+**倾向于**:
 ```swift
 var diameter: Double {
   return radius * 2
 }
 ```
 
-**Not Preferred**:
+**而不是**:
 ```swift
 var diameter: Double {
   get {
@@ -468,7 +468,7 @@ func reticulateSplines(
 
 Don't use `(Void)` to represent the lack of an input; simply use `()`. Use `Void` instead of `()` for closure and function outputs.
 
-**Preferred**:
+**倾向于**:
 
 ```swift
 func updateConstraints() -> Void {
@@ -478,7 +478,7 @@ func updateConstraints() -> Void {
 typealias CompletionHandler = (result) -> Void
 ```
 
-**Not Preferred**:
+**而不是**:
 
 ```swift
 func updateConstraints() -> () {
@@ -510,7 +510,7 @@ let success = reticulateSplines(
 
 Use trailing closure syntax only if there's a single closure expression parameter at the end of the argument list. Give the closure parameters descriptive names.
 
-**Preferred**:
+**倾向于**:
 ```swift
 UIView.animate(withDuration: 1.0) {
   self.myView.alpha = 0
@@ -523,7 +523,7 @@ UIView.animate(withDuration: 1.0, animations: {
 })
 ```
 
-**Not Preferred**:
+**而不是**:
 ```swift
 UIView.animate(withDuration: 1.0, animations: {
   self.myView.alpha = 0
@@ -559,19 +559,19 @@ let value = numbers
 
 Always use Swift's native types and expressions when available. Swift offers bridging to Objective-C so you can still use the full set of methods as needed.
 
-**Preferred**:
+**倾向于**:
 ```swift
 let width = 120.0                                    // Double
 let widthString = "\(width)"                         // String
 ```
 
-**Less Preferred**:
+**其次**:
 ```swift
 let width = 120.0                                    // Double
 let widthString = (width as NSNumber).stringValue    // String
 ```
 
-**Not Preferred**:
+**而不是**:
 ```swift
 let width: NSNumber = 120.0                          // NSNumber
 let widthString: NSString = width.stringValue        // NSString
@@ -585,9 +585,9 @@ Constants are defined using the `let` keyword and variables with the `var` keywo
 
 **Tip:** A good technique is to define everything using `let` and only change it to `var` if the compiler complains!
 
-You can define constants on a type rather than on an instance of that type using type properties. To declare a type property as a constant simply use `static let`. Type properties declared in this way are generally preferred over global constants because they are easier to distinguish from instance properties. Example:
+You can define constants on a type rather than on an instance of that type using type properties. To declare a type property as a constant simply use `static let`. Type properties declared in this way are generally 倾向于 over global constants because they are easier to distinguish from instance properties. Example:
 
-**Preferred**:
+**倾向于**:
 ```swift
 enum Math {
   static let e = 2.718281828459045235360287
@@ -599,7 +599,7 @@ let hypotenuse = side * Math.root2
 ```
 **Note:** The advantage of using a case-less enumeration is that it can't accidentally be instantiated and works as a pure namespace.
 
-**Not Preferred**:
+**而不是**:
 ```swift
 let e = 2.718281828459045235360287  // pollutes global namespace
 let root2 = 1.41421356237309504880168872
@@ -635,7 +635,7 @@ When naming optional variables and properties, avoid naming them like `optionalS
 
 For optional binding, shadow the original name whenever possible rather than using names like `unwrappedView` or `actualLabel`.
 
-**Preferred**:
+**倾向于**:
 ```swift
 var subview: UIView?
 var volume: Double?
@@ -652,7 +652,7 @@ UIView.animate(withDuration: 2.0) { [weak self] in
 }
 ```
 
-**Not Preferred**:
+**而不是**:
 ```swift
 var optionalSubview: UIView?
 var volume: Double?
@@ -695,7 +695,7 @@ private func makeLocationManager() -> CLLocationManager {
 
 Prefer compact code and let the compiler infer the type for constants or variables of single instances. Type inference is also appropriate for small, non-empty arrays and dictionaries. When required, specify the specific type such as `CGFloat` or `Int16`.
 
-**Preferred**:
+**倾向于**:
 ```swift
 let message = "Click the button"
 let currentBounds = computeViewBounds()
@@ -703,7 +703,7 @@ var names = ["Mic", "Sam", "Christine"]
 let maximumWidth: CGFloat = 106.5
 ```
 
-**Not Preferred**:
+**而不是**:
 ```swift
 let message: String = "Click the button"
 let currentBounds: CGRect = computeViewBounds()
@@ -714,13 +714,13 @@ var names = [String]()
 
 For empty arrays and dictionaries, use type annotation. (For an array or dictionary assigned to a large, multi-line literal, use type annotation.)
 
-**Preferred**:
+**倾向于**:
 ```swift
 var names: [String] = []
 var lookup: [String: Int] = [:]
 ```
 
-**Not Preferred**:
+**而不是**:
 ```swift
 var names = [String]()
 var lookup = [String: Int]()
@@ -733,14 +733,14 @@ var lookup = [String: Int]()
 
 Prefer the shortcut versions of type declarations over the full generics syntax.
 
-**Preferred**:
+**倾向于**:
 ```swift
 var deviceModels: [String]
 var employees: [Int: String]
 var faxNumber: Int?
 ```
 
-**Not Preferred**:
+**而不是**:
 ```swift
 var deviceModels: Array<String>
 var employees: Dictionary<Int, String>
@@ -753,13 +753,13 @@ Free functions, which aren't attached to a class or type, should be used sparing
 
 Free functions are most appropriate when they aren't associated with any particular type or instance.
 
-**Preferred**
+**倾向于**
 ```swift
 let sorted = items.mergeSorted()  // easily discoverable
 rocket.launch()  // acts on the model
 ```
 
-**Not Preferred**
+**而不是**
 ```swift
 let sorted = mergeSort(items)  // hard to discover
 launch(&rocket)
@@ -777,9 +777,9 @@ Code (even non-production, tutorial demo code) should not create reference cycle
 
 ### 扩展对象生命周期
 
-Extend object lifetime using the `[weak self]` and `guard let self = self else { return }` idiom. `[weak self]` is preferred to `[unowned self]` where it is not immediately obvious that `self` outlives the closure. Explicitly extending lifetime is preferred to optional chaining.
+Extend object lifetime using the `[weak self]` and `guard let self = self else { return }` idiom. `[weak self]` is 倾向于 to `[unowned self]` where it is not immediately obvious that `self` outlives the closure. Explicitly extending lifetime is 倾向于 to optional chaining.
 
-**Preferred**
+**倾向于**
 ```swift
 resource.request().onComplete { [weak self] response in
   guard let self = self else {
@@ -790,7 +790,7 @@ resource.request().onComplete { [weak self] response in
 }
 ```
 
-**Not Preferred**
+**而不是**
 ```swift
 // might crash if self is released before response returns
 resource.request().onComplete { [unowned self] response in
@@ -799,7 +799,7 @@ resource.request().onComplete { [unowned self] response in
 }
 ```
 
-**Not Preferred**
+**而不是**
 ```swift
 // deallocate could happen between updating the model and updating UI
 resource.request().onComplete { [weak self] response in
@@ -816,7 +816,7 @@ Only explicitly use `open`, `public`, and `internal` when you require a full acc
 
 Use access control as the leading property specifier. The only things that should come before access control are the `static` specifier or attributes such as `@IBAction`, `@IBOutlet` and `@discardableResult`.
 
-**Preferred**:
+**倾向于**:
 ```swift
 private let message = "Great Scott!"
 
@@ -825,7 +825,7 @@ class TimeMachine {
 }
 ```
 
-**Not Preferred**:
+**而不是**:
 ```swift
 fileprivate let message = "Great Scott!"
 
@@ -838,7 +838,7 @@ class TimeMachine {
 
 Prefer the `for-in` style of `for` loop over the `while-condition-increment` style.
 
-**Preferred**:
+**倾向于**:
 ```swift
 for _ in 0..<3 {
   print("Hello three times")
@@ -857,7 +857,7 @@ for index in (0...3).reversed() {
 }
 ```
 
-**Not Preferred**:
+**而不是**:
 ```swift
 var i = 0
 while i < 3 {
@@ -878,7 +878,7 @@ while i < attendeeList.count {
 
 The Ternary operator, `?:` , should only be used when it increases clarity or code neatness. A single condition is usually all that should be evaluated. Evaluating multiple conditions is usually more understandable as an `if` statement or refactored into instance variables. In general, the best use of the ternary operator is during assignment of a variable and deciding which value to use.
 
-**Preferred**:
+**倾向于**:
 
 ```swift
 let value = 5
@@ -888,7 +888,7 @@ let isHorizontal = true
 result = isHorizontal ? x : y
 ```
 
-**Not Preferred**:
+**而不是**:
 
 ```swift
 result = a > b ? x = c > d ? c : d : y
@@ -898,7 +898,7 @@ result = a > b ? x = c > d ? c : d : y
 
 When coding with conditionals, the left-hand margin of the code should be the "golden" or "happy" path. That is, don't nest `if` statements. Multiple return statements are OK. The `guard` statement is built for this.
 
-**Preferred**:
+**倾向于**:
 ```swift
 func computeFFT(context: Context?, inputData: InputData?) throws -> Frequencies {
 
@@ -914,7 +914,7 @@ func computeFFT(context: Context?, inputData: InputData?) throws -> Frequencies 
 }
 ```
 
-**Not Preferred**:
+**而不是**:
 ```swift
 func computeFFT(context: Context?, inputData: InputData?) throws -> Frequencies {
 
@@ -934,7 +934,7 @@ func computeFFT(context: Context?, inputData: InputData?) throws -> Frequencies 
 
 When multiple optionals are unwrapped either with `guard` or `if let`, minimize nesting by using the compound version when possible. In the compound version, place the `guard` on its own line, then indent each condition on its own line. The `else` clause is indented to match the conditions and the code is indented one additional level, as shown below. Example:
 
-**Preferred**:
+**倾向于**:
 ```swift
 guard 
   let number1 = number1,
@@ -946,7 +946,7 @@ guard
 // do something with numbers
 ```
 
-**Not Preferred**:
+**而不是**:
 ```swift
 if let number1 = number1 {
   if let number2 = number2 {
@@ -973,12 +973,12 @@ Swift does not require a semicolon after each statement in your code. They are o
 
 Do not write multiple statements on a single line separated with semicolons.
 
-**Preferred**:
+**倾向于**:
 ```swift
 let swift = "not a scripting language"
 ```
 
-**Not Preferred**:
+**而不是**:
 ```swift
 let swift = "not a scripting language";
 ```
@@ -989,14 +989,14 @@ let swift = "not a scripting language";
 
 Parentheses around conditionals are not required and should be omitted.
 
-**Preferred**:
+**倾向于**:
 ```swift
 if name == "Hello" {
   print("World")
 }
 ```
 
-**Not Preferred**:
+**而不是**:
 ```swift
 if (name == "Hello") {
   print("World")
@@ -1005,7 +1005,7 @@ if (name == "Hello") {
 
 In larger expressions, optional parentheses can sometimes make code read more clearly.
 
-**Preferred**:
+**倾向于**:
 ```swift
 let playerMark = (player == current ? "X" : "O")
 ```
@@ -1014,7 +1014,7 @@ let playerMark = (player == current ? "X" : "O")
 
 When building a long string literal, you're encouraged to use the multi-line string literal syntax. Open the literal on the same line as the assignment but do not include text on that line. Indent the text block one additional level.
 
-**Preferred**:
+**倾向于**:
 
 ```swift
 let message = """
@@ -1026,7 +1026,7 @@ let message = """
   """
 ```
 
-**Not Preferred**:
+**而不是**:
 
 ```swift
 let message = """You cannot charge the flux \
@@ -1037,7 +1037,7 @@ let message = """You cannot charge the flux \
   """
 ```
 
-**Not Preferred**:
+**而不是**:
 
 ```swift
 let message = "You cannot charge the flux " +
@@ -1094,14 +1094,14 @@ file:
 
 ## 笑脸
 
-Smiley faces are a very prominent style feature of the [raywenderlich.com](https://www.raywenderlich.com/) site! It is very important to have the correct smile signifying the immense amount of happiness and excitement for the coding topic. The closing square bracket `]` is used because it represents the largest smile able to be captured using ASCII art. A closing parenthesis `)` creates a half-hearted smile, and thus is not preferred.
+Smiley faces are a very prominent style feature of the [raywenderlich.com](https://www.raywenderlich.com/) site! It is very important to have the correct smile signifying the immense amount of happiness and excitement for the coding topic. The closing square bracket `]` is used because it represents the largest smile able to be captured using ASCII art. A closing parenthesis `)` creates a half-hearted smile, and thus is 而不是.
 
-**Preferred**:
+**倾向于**:
 ```
 :]
 ```
 
-**Not Preferred**:
+**而不是**:
 ```
 :)
 ```
