@@ -836,7 +836,7 @@ class TimeMachine {
 
 ## 控制流
 
-Prefer the `for-in` style of `for` loop over the `while-condition-increment` style.
+倾向于使用 `for-in` 风格的 `for` 循环，而不是 `while-condition-increment` 风格。
 
 **倾向于**:
 ```swift
@@ -987,7 +987,7 @@ let swift = "not a scripting language";
 
 ## 小括号
 
-Parentheses around conditionals are not required and should be omitted.
+条件语句中的小括号是不必要的，也应该被略掉。
 
 **倾向于**:
 ```swift
@@ -1003,7 +1003,7 @@ if (name == "Hello") {
 }
 ```
 
-In larger expressions, optional parentheses can sometimes make code read more clearly.
+在大一些的语句中，可选的小括号有时可以让代码读起来更清晰。
 
 **倾向于**:
 ```swift
@@ -1049,7 +1049,7 @@ let message = "You cannot charge the flux " +
 
 ## 禁用表情符
 
-Do not use emoji in your projects. For those readers who actually type in their code, it's an unnecessary source of friction. While it may be cute, it doesn't add to the learning and it interrupts the coding flow for these readers.
+在工程中不要使用表情符号。以在代码中写过的读者（的经验），它们会导致精力分散。尽管它们可能很可爱，对于学习来说没啥益处，且它们会打断这些读者的编码过程。
 
 ## 组织和包标识符
 
